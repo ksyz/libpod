@@ -386,6 +386,12 @@ func (d *Driver) Get(id string, options graphdriver.MountOpts) (_ string, retErr
 
 	mountOptions := d.options.mountOptions
 	if len(options.Options) > 0 {
+		for i, v := range options.Options {
+			if v == "ro" {
+				options.Options = append(options.Options[:i], options.Options[i+1:]...)
+				break
+			}
+		}
 		mountOptions = strings.Join(options.Options, ",")
 	}
 
