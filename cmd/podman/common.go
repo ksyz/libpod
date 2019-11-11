@@ -7,8 +7,8 @@ import (
 	"strings"
 
 	"github.com/containers/buildah"
+	buildahcli "github.com/containers/buildah/pkg/cli"
 	"github.com/containers/libpod/cmd/podman/cliconfig"
-	"github.com/containers/libpod/cmd/podman/shared"
 	"github.com/containers/libpod/libpod/define"
 	"github.com/containers/libpod/pkg/rootless"
 	"github.com/containers/libpod/pkg/sysinfo"
@@ -112,7 +112,7 @@ func getCreateFlags(c *cliconfig.PodmanCommand) {
 		"Attach to STDIN, STDOUT or STDERR (default [])",
 	)
 	createFlags.String(
-		"authfile", shared.GetAuthFile(""),
+		"authfile", buildahcli.GetDefaultAuthFile(),
 		"Path of the authentication file. Use REGISTRY_AUTH_FILE environment variable to override",
 	)
 	createFlags.String(
@@ -188,7 +188,7 @@ func getCreateFlags(c *cliconfig.PodmanCommand) {
 		"Run container in background and print container ID",
 	)
 	createFlags.String(
-		"detach-keys", "",
+		"detach-keys", define.DefaultDetachKeys,
 		"Override the key sequence for detaching a container. Format is a single character `[a-Z]` or a comma separated sequence of `ctrl-<value>`, where `<value>` is one of: `a-z`, `@`, `^`, `[`, `\\`, `]`, `^` or `_`",
 	)
 	createFlags.StringSlice(
@@ -328,7 +328,7 @@ func getCreateFlags(c *cliconfig.PodmanCommand) {
 	)
 	createFlags.String(
 		"mac-address", "",
-		"Container MAC address (e.g. 92:d0:c6:0a:29:33), not currently supported",
+		"Container MAC address (e.g. 92:d0:c6:0a:29:33)",
 	)
 	createFlags.StringP(
 		"memory", "m", "",

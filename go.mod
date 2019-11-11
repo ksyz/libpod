@@ -9,15 +9,16 @@ require (
 	github.com/checkpoint-restore/go-criu v0.0.0-20190109184317-bdb7599cd87b
 	github.com/codahale/hdrhistogram v0.0.0-20161010025455-3a0bb77429bd // indirect
 	github.com/containerd/continuity v0.0.0-20190426062206-aaeac12a7ffc // indirect
-	github.com/containernetworking/cni v0.7.1
+	github.com/containernetworking/cni v0.7.2-0.20190904153231-83439463f784
 	github.com/containernetworking/plugins v0.8.2
 	github.com/containers/buildah v1.11.5-0.20191031204705-20e92ffe0982
+	github.com/containers/conmon v2.0.2+incompatible // indirect
 	github.com/containers/image/v5 v5.0.0
 	github.com/containers/psgo v1.3.2
 	github.com/containers/storage v1.13.5
 	github.com/coreos/go-systemd v0.0.0-20190719114852-fd7a80b32e1f
 	github.com/coreos/pkg v0.0.0-20180928190104-399ea9e2e55f // indirect
-	github.com/cri-o/ocicni v0.1.1-0.20190702175919-7762645d18ca
+	github.com/cri-o/ocicni v0.1.1-0.20190920040751-deac903fd99b
 	github.com/cyphar/filepath-securejoin v0.2.2
 	github.com/davecgh/go-spew v1.1.1
 	github.com/docker/distribution v2.7.1+incompatible
@@ -37,11 +38,11 @@ require (
 	github.com/hashicorp/go-multierror v1.0.0
 	github.com/hpcloud/tail v1.0.0
 	github.com/imdario/mergo v0.3.7 // indirect
-	github.com/json-iterator/go v1.1.7
+	github.com/json-iterator/go v1.1.8
 	github.com/mattn/go-isatty v0.0.8 // indirect
 	github.com/mrunalp/fileutils v0.0.0-20171103030105-7d4729fb3618
 	github.com/onsi/ginkgo v1.10.3
-	github.com/onsi/gomega v1.7.0
+	github.com/onsi/gomega v1.7.1
 	github.com/opencontainers/go-digest v1.0.0-rc1
 	github.com/opencontainers/image-spec v1.0.2-0.20190823105129-775207bd45b6
 	github.com/opencontainers/runc v1.0.0-rc8.0.20190827142921-dd075602f158
@@ -59,7 +60,7 @@ require (
 	github.com/stretchr/testify v1.4.0
 	github.com/syndtr/gocapability v0.0.0-20180916011248-d98352740cb2
 	github.com/uber-go/atomic v1.4.0 // indirect
-	github.com/uber/jaeger-client-go v2.19.0+incompatible
+	github.com/uber/jaeger-client-go v2.20.0+incompatible
 	github.com/uber/jaeger-lib v0.0.0-20190122222657-d036253de8f5 // indirect
 	github.com/varlink/go v0.0.0-20190502142041-0f1d566d194b
 	github.com/vishvananda/netlink v1.0.0

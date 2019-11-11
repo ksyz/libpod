@@ -160,7 +160,7 @@ func (config *CreateConfig) parseVolumes(runtime *libpod.Runtime) ([]spec.Mount,
 	}
 
 	// If requested, add tmpfs filesystems for read-only containers.
-	if config.ReadOnlyRootfs && config.ReadOnlyTmpfs {
+	if config.Security.ReadOnlyRootfs && config.Security.ReadOnlyTmpfs {
 		readonlyTmpfs := []string{"/tmp", "/var/tmp", "/run"}
 		options := []string{"rw", "rprivate", "nosuid", "nodev", "tmpcopyup"}
 		for _, dest := range readonlyTmpfs {
@@ -514,11 +514,17 @@ func getTmpfsMount(args []string) (spec.Mount, error) {
 		Source: TypeTmpfs,
 	}
 
-	var setDest, setRORW, setSuid, setDev, setExec bool
+	var setDest, setRORW, setSuid, setDev, setExec, setTmpcopyup bool
 
 	for _, val := range args {
 		kv := strings.Split(val, "=")
 		switch kv[0] {
+		case "tmpcopyup", "notmpcopyup":
+			if setTmpcopyup {
+				return newMount, errors.Wrapf(optionArgError, "cannot pass 'tmpcopyup' and 'notmpcopyup' options more than once")
+			}
+			setTmpcopyup = true
+			newMount.Options = append(newMount.Options, kv[0])
 		case "ro", "rw":
 			if setRORW {
 				return newMount, errors.Wrapf(optionArgError, "cannot pass 'ro' and 'rw' options more than once")
@@ -801,7 +807,7 @@ func (config *CreateConfig) addContainerInitBinary(path string) (spec.Mount, err
 	if path == "" {
 		return mount, fmt.Errorf("please specify a path to the container-init binary")
 	}
-	if !config.PidMode.IsPrivate() {
+	if !config.Pid.PidMode.IsPrivate() {
 		return mount, fmt.Errorf("cannot add init binary as PID 1 (PID namespace isn't private)")
 	}
 	if config.Systemd {
